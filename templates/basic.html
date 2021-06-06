@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Information theory</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+            integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+    <style>
+        textarea {
+            width: 70%;
+            height: 150px;
+            padding: 12px 20px;
+            box-sizing: border-box;
+            border: 2px solid #ccc;
+            border-radius: 4px;
+            background-color: #f8f8f8;
+            font-size: 16px;
+            resize: none;
+        }
+
+        .shennon {
+            margin-left: 30px;
+
+            padding: 30pt;
+            background-color: #D8FDEB;
+            text-align: center;
+        }
+
+
+        footer {
+            margin-top: 10px;
+            background-color: #D8FDEB;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .button {
+            box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+            text-align: center;
+            border-radius: 12px;
+            background-color: #39B72E;
+            transition-duration: 0.4s;
+            border: none;
+            color: white;
+            padding: 10px 28px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #39B72E;
+            color: white;
+        }
+
+        /* side menu */
+        .wui-side-menu {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 220px;
+            height: 100%;
+            backface-visibility: hidden;
+            z-index: 3;
+            -webkit-transform: translateX(-100%);
+            transform: translateX(-100%);
+            -webkit-transition: webkit-transform 220ms ease-in-out;
+            transition: transform 220ms ease-in-out;
+        }
+
+        .wui-side-menu.open {
+            -webkit-transform: translateX(0);
+            transform: translateX(0);
+        }
+
+        .wui-side-menu.open ~ .content .side-menu-trigger {
+            display: none;
+        }
+
+        .wui-side-menu.open {
+            box-shadow: 2px 0 16px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .wui-side-menu .header,
+        .wui-content-header {
+            vertical-align: baseline;
+            line-height: 50px;
+        }
+
+        .wui-side-menu-pin-trigger,
+        .wui-side-menu-trigger {
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            display: inline-block;
+            font-size: 18px;
+            line-height: 50px;
+        }
+
+        .wui-side-menu .wui-side-menu-pin-trigger {
+            display: none;
+            float: right;
+        }
+
+        .wui-side-menu .wui-side-menu-pin-trigger i {
+            -webkit-transition: all 0.22s ease-out;
+            -moz-transition: all 0.22s ease-out;
+            -o-transition: all 0.22s ease-out;
+            transition: all 0.22s ease-out;
+        }
+
+        .wui-side-menu .wui-side-menu-items {
+            overflow-y: auto;
+            height: calc(100% - 50px);
+        }
+
+        .wui-side-menu .wui-side-menu-item {
+            display: block;
+            width: 100%;
+            padding: 15px 12px;
+            border-left: 5px solid transparent;
+        }
+
+        .wui-side-menu .wui-side-menu-item {
+            height: 50px
+        }
+
+        .wui-side-menu .wui-side-menu-item i.box-ico {
+            margin-right: 4px;
+        }
+
+        /* overlay */
+        .wui-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: 2;
+            background-color: rgba(0, 0, 0, 0.1);
+            opacity: 0.5;
+            display: none;
+        }
+
+        .wui-side-menu.open ~ .wui-overlay, .wui-overlay.active {
+            display: block;
+        }
+
+        /* content */
+        .wui-content {
+            z-index: 1;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            -webkit-transition: all 0.22s ease-out;
+            -moz-transition: all 0.22s ease-out;
+            -o-transition: all 0.22s ease-out;
+            transition: all 0.22s ease-out;
+            padding: 0 10px;
+        }
+
+        .wui-content .wui-side-menu-trigger {
+            margin-left: -10px;
+        }
+
+        @media only screen and (min-width: 768px) {
+            .wui-side-menu .wui-side-menu-pin-trigger {
+                display: inline-block;
+            }
+
+            .wui-side-menu.open {
+                box-shadow: initial;
+            }
+
+            .wui-side-menu.open ~ .wui-overlay {
+                display: none;
+            }
+
+            .wui-side-menu.open ~ .wui-content .wui-side-menu-trigger {
+                display: none;
+            }
+
+            .wui-side-menu.open:not(.pinned) ~ .wui-overlay {
+                display: block;
+            }
+
+            .wui-side-menu.open:not(.pinned) {
+                box-shadow: 2px 0 16px 0 rgba(0, 0, 0, 0.3);
+            }
+
+            .wui-side-menu.open.pinned ~ .wui-content {
+                left: 220px;
+            }
+        }
+
+        ul.wui-side-menu-items {
+            list-style: none;
+            padding: 0
+        }
+
+        .wui-side-menu {
+            background-color: #292e34;
+            color: #ddd;
+        }
+
+        .wui-side-menu .wui-side-menu-trigger:hover,
+        .wui-side-menu-item:hover,
+        .wui-side-menu-pin-trigger:hover {
+            color: black;
+            background-color: #E9FEF5;
+        }
+
+        .wui-side-menu a {
+            color: black;
+            text-decoration: none
+        }
+
+        .wui-side-menu .wui-side-menu-item.active {
+            border-left-color: #158439;
+            color: #158439
+        }
+
+        .wui-content a {
+            color: #000;
+        }
+
+
+        /* demo */
+        body {
+            margin: 0;
+            font-family: 'Palatino';
+            font-weight: 100;
+            background-color: #E9FEF5;
+        }
+
+        *, *:after, *:before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        h3 {
+            margin-left: 5%;
+            font-size: 20px;
+        }
+
+        .box-title {
+            font-size: 20px;
+        }
+
+        .main-content {
+            position: absolute;
+            width: 1001px;
+            height: 1989px;
+            left: 100px;
+            top: 100px;
+            background: #D8FDEB;
+            border-radius: 5px;
+        }
+
+        .theory {
+            left: 150px;
+            top: 90px;
+            background: #D8FDEB;
+        }
+
+        .text {
+            width: 80%;
+            background: #FDFFEC;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 5%;
+            padding-left: 10px;
+            padding-right: 10px;
+            font-size: 20px;
+            font-family: 'Palatino';
+        }
+
+        .main-content {
+            position: absolute;
+            width: 1001px;
+            height: 3200px;
+            left: 100px;
+            top: 100px;
+            background: #D8FDEB;
+            border-radius: 5px;
+        }
+
+        .theory {
+            position: absolute;
+            width: 707px;
+            height: 220px;
+            left: 150px;
+            top: 90px;
+            background: #FDFFEC;
+            border-radius: 10px;
+        }
+
+        .theory .th {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 15px;
+            font-size: 20px;
+        }
+
+        .theory2 {
+            position: absolute;
+            width: 707px;
+            height: 150px;
+            left: 150px;
+            background: #FDFFEC;
+            border-radius: 10px;
+        }
+
+        .theory2 .th {
+            padding-left: 10px;
+            padding-right: 10px;
+            padding-top: 15px;
+            font-size: 20px;
+        }
+
+        a:hover {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="wui-side-menu open pinned" style="background-color: #EAFA87">
+    <ul class="wui-side-menu-items">
+        <li>
+            <a href="{% url 'index' %}" class="wui-side-menu-item">
+                <i class="bi bi-power"></i>
+                <span class="box-title">Main</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'theory1' %}" class="wui-side-menu-item">
+                <i class="bi bi-lightbulb-fill"></i>
+                <span class="box-title">Compression theory</span>
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'theory2' %}" class="wui-side-menu-item">
+                <i class="bi bi-lightbulb-fill"></i>
+                <span class="box-title">Encryption theory</span>
+            </a>
+        </li>
+    </ul>
+</div>
+{% block content %}
+
+{% endblock %}
+</body>
+</html>

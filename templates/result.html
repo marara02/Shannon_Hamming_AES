@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'basic.html' %}
+
+{% block content %}
+
+<h1> Cipher = {{cipher}} </h1>
+<h1> Plaintext = {{plaintext}} </h1>
+<h1>Shannon Encoded message = {{Shannon_encode}}</h1>
+<h1>Hamming encoded message = {{Hamming}}</h1>
+<h1>Errors = {{error}}</h1>
+<h1>Corrected = {{corrected}}</h1>
+<h1>Decoded = {{decodedHamming}}</h1>
+<h1>Checked = {{var}}</h1>
+<h1>Whole Decoded by Shannon = {{Decoded}}</h1>
+<h1>Compression ratio = {{ratio}}</h1>
+
+{% endblock %}

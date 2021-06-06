@@ -1,0 +1,155 @@
+{% extends 'basic.html' %}
+{%block content%}
+<div class="wui-content">
+    <div class="wui-content-header">
+        <a href="#" class="wui-side-menu-trigger"><i class="fa fa-bars"></i></a>
+        <h1 class="wui-title" style="margin-left: 5%">Shannon-Fano Algorithm</h1>
+    </div>
+    <div class="main-content">
+        <div class="theory">
+            <p class="th">
+                <span style="font-weight: bold">Shannon Fano Algorithm</span> is an entropy encoding technique for lossless data compression
+                of multimedia.
+                Named after Claude Shannon and Robert Fano, it assigns a code to each symbol based on their
+                probabilities of occurrence. It is a variable length encoding scheme, that is, the codes assigned to the
+                symbols will be of varying length.
+            </p>
+        </div>
+        <div class="container my-5">
+            <section id="steps" style="margin-top: 40%">
+                <div class="text-center mb-5">
+                    <span>STEPS</span>
+                    <h2 class="font-weight-bold display-4 ">How It <span style=" color: #9B5DE5">Works?</span></h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #9B5DE5">
+                                1
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Step 1</h4>
+                                <p class="font-weight-light my-3">Create a list of probabilities or frequency counts for
+                                    the given set of symbols so that the relative frequency of occurrence of each symbol
+                                    is known.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #9B5DE5">
+                                2
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Step 2</h4>
+                                <p class="font-weight-light my-3">Sort the list of symbols in decreasing order of
+                                    probability, the most probable ones to the left and least probable to the right.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #9B5DE5">
+                                3
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Step 3</h4>
+                                <p class="font-weight-light my-3">Split the list into two parts, with the total
+                                    probability of both the parts being as close to each other as possible.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4" style="margin-left: 17%">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #9B5DE5">
+                                4
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Step 4</h4>
+                                <p class="font-weight-light my-3">Assign the value 0 to the left part and 1 to the right
+                                    part.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #9B5DE5">
+                                5
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Step 5</h4>
+                                <p class="font-weight-light my-3">Repeat the steps 3 and 4 for each part, until all the
+                                    symbols are split into individual subgroups.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <div class="theory2">
+                <p class="th">
+                    <span style="font-weight: bold">Hamming code</span> is a set of error-correction codes that can be used to detect and
+                    correct the errors
+                    that can occur when the data is moved or stored from the sender to the receiver. It is technique
+                    developed by R.W. Hamming for error correction.
+                </p>
+            </div>
+            <section id="step" style="margin-top: 20%">
+                <div class="text-center mb-5">
+                    <span>STEPS</span>
+                    <h2 class="font-weight-bold display-4 ">How It <span style=" color: #185adb">Works?</span></h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #185adb">
+                                1
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Step 1</h4>
+                                <p class="font-weight-light my-3">Divide encoded list from Shannon to (7,4) 01010101 --
+                                    0101 0101</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #185adb">
+                                2
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Step 2</h4>
+                                <p class="font-weight-light my-3">Transmit by XOR <br>
+                                    r1 = i1 XOR i2 XOR i3<br>
+                                    r2 = i2 XOR i3 XOR i4<br>
+                                    r1 = i1 XOR i2 XOR i4
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #185adb">
+                                3
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Step 3</h4>
+                                <p class="font-weight-light my-3">Add parity bits from XOR to the end of Hamming (7,
+                                    4)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="wui-overlay"></div>
+{% endblock %}

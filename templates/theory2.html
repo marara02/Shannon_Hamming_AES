@@ -1,0 +1,143 @@
+{% extends 'basic.html' %}
+{%block content%}
+<div class="wui-content">
+    <div class="wui-content-header">
+        <a href="#" class="wui-side-menu-trigger"><i class="fa fa-bars"></i></a>
+        <h1 class="wui-title" style="margin-left: 5%">AES Encryption</h1>
+    </div>
+    <div class="main-content">
+        <div class="container my-5">
+            <section>
+                <div class="text-center mb-5">
+                    <span>Encryption</span>
+                    <h2 class="font-weight-bold display-4 ">How It <span style="color: #9B5DE5">Works?</span></h2>
+                </div>
+                <div class="col-12 col-md-6 mx-auto">
+                    <div class="">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #9B5DE5">
+                                1
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Dividing data into blocks</h4>
+                                <p class="font-weight-light my-3">Each of its blocks contains a column of 16 bytes in a
+                                    layout of four-by-four. As one byte contains 8 bits, we get 128-bit block size
+                                    (16×8=128).</p>
+                                <p>“better late than never”</p>
+                                <img src="https://cybernews.com/wp-content/uploads/2020/12/aes-encryption-blocks.png"
+                                     width="180" height="150">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #9B5DE5">
+                                2
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Key expansion</h4>
+                                <p class="font-weight-light my-3">This is an important step of AES encryption. It
+                                    produces new 128-bit round keys with the help of Rijndael’s key schedule.</p>
+                                <p>“extraterrestrial”</p>
+                                <img src="https://cybernews.com/wp-content/uploads/2020/12/aes-encryption-before-key-expansion.png"
+                                     width="180" height="150">
+                                <img src="https://cybernews.com/wp-content/uploads/2020/12/aes-encryption-after-key-expansion.png"
+                                     width="180" height="150">
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #9B5DE5">
+                                3
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Adding round key</h4>
+                                <p class="font-weight-light my-3">This is the very first round of AES encryption. Here,
+                                    the algorithm adds the initial key to our phrase, which was previously turned into a
+                                    4×4 block:</p>
+                                <img src="https://cybernews.com/wp-content/uploads/2020/12/aes-key-addition.png"
+                                     width="180" height="190">
+                                <img src="https://cybernews.com/wp-content/uploads/2020/12/aes-encryption-key-added.png"
+                                     width="180" height="150">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #9B5DE5">
+                                4
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Byte substitution</h4>
+                                <p class="font-weight-light my-3">Now, the AES algorithm substitutes every byte with a
+                                    code according to a pre-established table called the Rijndael S-box. It looks like
+                                    this:</p>
+                                <img src="https://cybernews.com/wp-content/uploads/2020/12/AES-encryption-the-Rijndael-S-box.jpg"
+                                     width="180" height="190">
+                                <img src="https://cybernews.com/wp-content/uploads/2020/12/aes-encryption-byte-substitute.png"
+                                     width="180" height="150">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #9B5DE5">
+                                5
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Shifting rows</h4>
+                                <p class="font-weight-light my-3">In this step, the AES algorithm shifts the rows of the
+                                    block it got during the byte substitution process.</p>
+                                <img src="https://cybernews.com/wp-content/uploads/2020/12/aes-encryption-shifting-rows.png"
+                                     width="180" height="150">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #9B5DE5">
+                                6
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Mixing columns</h4>
+                                <p class="font-weight-light my-3">Talking in mathematical terms, this step multiplies
+                                    each column by a predefined matrix, giving us a brand new block of code.
+
+                                    It is a really complicated process, involving a lot of advanced level
+                                    mathematics.</p>
+                                <img src="https://cybernews.com/wp-content/uploads/2020/12/aes-encryption-mix-columns.png"
+                                     width="180" height="150">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="bg-light position-relative px-3 my-5">
+                            <div class="font-weight-bold circle text-white rounded-circle d-flex align-items-center justify-content-center mx-auto position-relative border border-white"
+                                 style="width: 60px;height: 60px;top: -30px;border-width: 4px !important; background-color: #9B5DE5">
+                                7
+                            </div>
+                            <div class="px-3 text-center pb-3">
+                                <h4>Adding round key</h4>
+                                <p class="font-weight-light my-3">It’s time to apply the round key we got in the key
+                                    expansion section. Let’s add it to the block we got in the previous section after
+                                    the process of column mixing:</p>
+                                <img src="https://cybernews.com/wp-content/uploads/2020/12/aes-encryption-add-round-key.png"
+                                     width="180" height="200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+<div class="wui-overlay"></div>
+{%endblock%}

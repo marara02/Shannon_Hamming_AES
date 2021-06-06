@@ -1,0 +1,64 @@
+{% extends 'basic.html' %}
+{%block content%}
+<div class="wui-content">
+    <div class="wui-content-header">
+        <a href="#" class="wui-side-menu-trigger"><i class="fa fa-bars"></i></a>
+        <h1 class="wui-title" style="margin-left: 5%; margin-top: 4%">Shannon-Fano Algorithm</h1>
+    </div>
+    <div class="main-content">
+            <div class="Shennon">
+                <form action="encrypt" method="post" style="text-align: center;">
+                    {% csrf_token %}
+                    <div class="form-group shadow-textarea">
+                        <textarea id="form10" class="md-textarea form-control" rows="3"
+                                  placeholder="Enter message" name="num1"
+                                  style="width: 80%; margin-right: auto; margin-left: auto; margin-top: 5%"></textarea><br>
+                        <input class="button" type="submit" value="Get It">
+                    </div>
+                </form>
+                <div>
+                    <div class="func" id="aes">
+                        <h3><i class="bi bi-unlock-fill"></i>
+                            AES cipher text:</h3>
+                        <div class="text" style="word-break: break-all">{{cipher}}</div>
+                    </div>
+                    <div class="func" id="encoding" style="word-break: break-all">
+                        <h3><i class="bi bi-terminal-fill"></i>
+                            Shannon-Fano encoding:</h3>
+                        <div class="text">{{Shannon_encode}}</div>
+                    </div>
+
+                    <div class="func" id="transmission" style="word-break: break-all">
+                        <h3><i class="bi bi-volume-up-fill"></i>
+                            Transmission:</h3>
+                        <div class="text">{{error}}</div>
+                    </div>
+
+                    <div class="func" id="correction" style="word-break: break-all">
+                        <h3><i class="bi bi-wrench"></i>
+                            Error correction:</h3>
+                        <div class="text">{{corrected}}</div>
+                    </div>
+
+                    <div class="func" id="final" style="word-break: break-all">
+                        <h3><i class="bi bi-terminal"></i>
+                            Shannon-Fano Decoding process:</h3>
+                        <div class="text">{{Decoded}}</div>
+                    </div>
+                    <div class="func" id="compratio">
+                        <h3><i class="bi bi-pencil-fill"></i>
+                            Compression ratio:</h3>
+                        <div class="text">{{ratio}}</div>
+                    </div>
+                </div>
+            </div>
+            <footer>
+                <h2>Is this your message?</h2>
+                <input type="button" class="button" value="Yes">
+                <input type="button" class="button" value="No" style="background-color: #B72E2E;">
+            </footer>
+        </div>
+    </div>
+</div>
+<div class="wui-overlay"></div>
+{% endblock %}
